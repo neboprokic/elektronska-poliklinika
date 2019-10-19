@@ -2,7 +2,7 @@
 Web portal za privatne poliklinike
 
 
-## Project requirements
+## Projektni zahtevi
 
 U sistemu treba razlikovati cetiri grupe korisnika (korisnike, Lekare, Pomocno osoblje, Administratora sistema).
 
@@ -50,17 +50,21 @@ konfigurabilna tako da lekari po specijalizaciji mogu praviti grupu tih pitanja.
 
 ## Available Scripts
 
-In the project directory, you can run:
+iz direktorijuma projekta mozete pokrenuti:
 
-### `npm start`
+### `yarn server`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+pokretanje servera
+
+### `yarn start`
+
+pokretanje klijent aplikacije u development modu.
+web aplikacija je dostupna na [http://localhost:3000](http://localhost:3000).
 
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-### `npm run build`
+### `yarn build`
 
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
