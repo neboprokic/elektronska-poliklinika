@@ -36,7 +36,6 @@ app.use(bodyParser.json());
 app.use((req, res, next) => {
   const privateUrls = ['/users', '/medicaments', '/services'];
   const permissionLevel = { patient: 0, nurse: 1, dr: 2, admin: 3 };
-  console.log(req.path);
 
   if (!privateUrls.includes(req.path)) return next();
 
