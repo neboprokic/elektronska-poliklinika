@@ -58,6 +58,37 @@ app.use((req, res, next) => {
 
 db.defaults(seeds).write();
 
+app.get('/medicaments', (req, res) => {
+  res.send(db.get('medicaments').value());
+});
+
+app.post('/medicaments', (req, res) => {
+  const medicament = { ...req.body, id: generateUid() };
+
+  db.get('medicaments')
+    .push(medicament)
+    .write();
+  res.status(201).send(medicament);
+});
+
+app.post('/medicaments/:id', (req, res) => {
+  const medicamentEntry = db.get('medicaments').find({ id: req.params.id });
+  const medicament = medicamentEntry.value();
+
+  if (!medicament) return res.status(404).end();
+
+  medicamentEntry.assign({ ...req.body, id: medicament.id }).write();
+  res.send(medicamentEntry.value());
+});
+
+app.delete('/medicaments/:id', (req, res) => {
+  db.get('medicaments')
+    .remove({ id: req.params.id })
+    .write();
+
+  res.status(204).end();
+});
+
 app.get('/services', (req, res) => {
   res.send(db.get('services').value());
 });
