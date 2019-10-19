@@ -154,6 +154,34 @@ app.delete('/appointments/:id', (req, res) => {
   res.status(204).end();
 });
 
+app.get('/expenses', (req, res) => {
+  const { from, to } = req.query;
+  const expenses = db
+    .get('expenses')
+    .filter(({ date }) => (!from || date >= from) && (!to || date <= to))
+    .value();
+
+  res.send(expenses);
+});
+
+app.post('/expenses', (req, res) => {
+  const date = new Date().toISOString().split('T')[0];
+  const expense = { ...req.body, id: generateUid(), date };
+
+  db.get('expenses')
+    .push(expense)
+    .write();
+  res.status(201).send(expense);
+});
+
+app.delete('/expenses/:id', (req, res) => {
+  db.get('expenses')
+    .remove({ id: req.params.id })
+    .write();
+
+  res.status(204).end();
+});
+
 app.get('/medicaments', (req, res) => {
   res.send(db.get('medicaments').value());
 });
