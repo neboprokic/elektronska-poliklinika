@@ -4,7 +4,7 @@
       "username": "admin",
       "password": "pass",
       "role": "admin",
-      "token": "15711554751150.14559298397910836",
+      "token": "15715029035580.011335230661716933",
       "id": "666"
     },
     {
@@ -93,7 +93,7 @@
       "services": [],
       "role": "nurse",
       "id": "15703781862350.061933908893860634",
-      "status": "active"
+      "status": "inactive"
     }
   ],
   "appointments": [
