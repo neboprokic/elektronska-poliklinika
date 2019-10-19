@@ -58,6 +58,37 @@ app.use((req, res, next) => {
 
 db.defaults(seeds).write();
 
+app.get('/services', (req, res) => {
+  res.send(db.get('services').value());
+});
+
+app.post('/services', (req, res) => {
+  const service = { ...req.body, id: generateUid() };
+
+  db.get('services')
+    .push(service)
+    .write();
+  res.status(201).send(service);
+});
+
+app.post('/services/:id', (req, res) => {
+  const serviceEntry = db.get('services').find({ id: req.params.id });
+  const service = serviceEntry.value();
+
+  if (!service) return res.status(404).end();
+
+  serviceEntry.assign({ ...req.body, id: service.id }).write();
+  res.send(serviceEntry.value());
+});
+
+app.delete('/services/:id', (req, res) => {
+  db.get('services')
+    .remove({ id: req.params.id })
+    .write();
+
+  res.status(204).end();
+});
+
 app.get('/users', (req, res) => {
   const { role } = req.query;
   const users = db
