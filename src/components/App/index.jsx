@@ -10,6 +10,13 @@ import PrivateRoute from 'components/PrivateRoute';
 import DashboardPage from 'components/Page/Dashboard';
 import LoginPage from 'components/Page/Login';
 import LogoutPage from 'components/Page/Logout';
+import PatientPage from 'components/Page/Patient';
+import PatientsPage from 'components/Page/Patients';
+import MedicamentsPage from 'components/Page/Medicaments';
+import ExpensesPage from 'components/Page/Expenses';
+import ServicesPage from 'components/Page/Services';
+import StaffPage from 'components/Page/Staff';
+import StaffMemberPage from 'components/Page/StaffMember';
 import './styles.css';
 
 function App({ history }) {
@@ -29,6 +36,13 @@ function App({ history }) {
         <PrivateRoute path="/" exact component={DashboardPage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/logout" component={LogoutPage} />
+        <PrivateRoute path="/pacijenti/:id" component={PatientPage} />
+        <PrivateRoute path="/pacijenti" component={PatientsPage} />
+        <PrivateRoute path="/medikamenti" component={MedicamentsPage} />
+        <PrivateRoute path="/usluge" component={ServicesPage} />
+        <PrivateRoute path="/osoblje/:id" component={StaffMemberPage} />
+        <PrivateRoute path="/osoblje" component={StaffPage} />
+        <PrivateRoute path="/troskovi" component={ExpensesPage} />
         <Redirect from="*" to="/" />
       </Switch>
     </AppStateContext.Provider>
