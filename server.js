@@ -270,6 +270,7 @@ app.post('/users', (req, res) => {
 
 app.get('/users/:id', (req, res) => {
   const { id } = req.params;
+  const me = getMe(req);
   const user = db
     .get('users')
     .find(user => user.id === id)
@@ -277,7 +278,9 @@ app.get('/users/:id', (req, res) => {
 
   if (!user) return res.status(404).end();
 
-  if (user.token !== req.get('token')) return res.status(403).end();
+  if (me.role === 'patient' && user.token !== req.get('token')) {
+    return res.status(403).end();
+  }
 
   res.send(getUser(user, req));
 });
