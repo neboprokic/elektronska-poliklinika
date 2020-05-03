@@ -339,4 +339,4 @@ app.use('/', express.static('build'));
 
 app.get('/*', (req, res) => res.sendFile(__dirname + '/build/index.html'));
 
-app.listen(3003, () => console.log('API server listening on port 3003'));
+app.listen(process.env.PORT || 3003, () => console.log('API server listening on port 3003'));
