@@ -1,6 +1,6 @@
 import { forwardTo } from 'utils/route';
 
-const apiUrl = 'http://localhost:3003';
+const apiUrl = window.location.origin;
 
 const getResponseBody = response => {
   const contentType = response.headers.get('Content-Type') || '';
